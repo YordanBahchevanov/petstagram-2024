@@ -8,5 +8,8 @@ class PhotoAdmin(admin.ModelAdmin):
 
     @staticmethod
     def get_tagged_pets(obj):
-        return ', '.join(str(pet) for pet in obj.tagged_pets.all())
+        pets = obj.tagged_pets.all()
+        if not pets:
+            return 'No pets tagged'
+        return ', '.join(str(pet) for pet in pets)
 
